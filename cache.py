@@ -62,7 +62,7 @@ class Cache:
         hash = hashlib.md5(object.get(self.hash_key).encode()).hexdigest()
         return hash
 
-    def stats(self, cache_hits=True, cache_dict=True):
+    def stats(self, cache_hits=True, cache_dict=False):
         if cache_hits:
             print(
                 self.tabulate(
@@ -71,24 +71,16 @@ class Cache:
                     tablefmt="simple_grid",
                 )
             )
-        # if cache_dict:
-        #     print(
-        #         tabulate(
-        #             self.cache_hits,
-        #             headers=["key", "Hits"],
-        #             tablefmt="simple_grid",
-        #         )
-        #     )
+        if cache_dict:
+            print(
+                tabulate(
+                    self.cache_dict.items(),
+                    tablefmt="simple_grid",
+                )
+            )
 
 
-# class client:
-#     def __init__(self):
-#         pass
-#     @staticmethod
-#     def do_request(object,cache):
-#         try:
-#             cache.store(object)
-#         Except:
+
 
 cache = Cache(10, hash_key="id")
 with open("data.json", "r") as f:
