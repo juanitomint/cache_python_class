@@ -8,14 +8,17 @@ import logging
 
 # Set the log level to DEBUG
 logging.basicConfig(level=logging.DEBUG)
+
+
 class Cache:
-    def __init__(self, size, hash_key="id",tabulate=tabulate,logging=logging):
+    def __init__(self, size, hash_key="id", tabulate=tabulate, logging=logging):
         self.cache_hits = defaultdict(int)
         self.cache_dict = {}
         self.size = size
         self.hash_key = hash_key
-        self.tabulate=tabulate
+        self.tabulate = tabulate
         self.logger = logging.getLogger(__name__)
+
     # object ={key:value}
     def get(self, key):
         # hash=slelf.hash(object)
@@ -40,11 +43,12 @@ class Cache:
         self.cache_dict[hash] = object
         self.cache_hits[hash] = hits
         self.logger.debug(f"Object with hash {hash} added to cache")
+
     def _evict(self):
         sorted_dict = dict(sorted(self.cache_hits.items(), key=lambda x: x[1]))
         last_key = list(sorted_dict.keys())[0]
         self.logger.debug(f"evicting key {last_key} from cache")
-        
+
         self.invalidate(last_key)
         return True
 
@@ -75,8 +79,6 @@ class Cache:
         #             tablefmt="simple_grid",
         #         )
         #     )
-            
-
 
 
 # class client:
@@ -88,7 +90,7 @@ class Cache:
 #             cache.store(object)
 #         Except:
 
-cache = Cache(10,hash_key="id")
+cache = Cache(10, hash_key="id")
 with open("data.json", "r") as f:
     data = json.load(f)
 
@@ -104,6 +106,6 @@ for i in range(0, 100):
 cache.stats(tabulate)
 
 print("insert new key and evict less used")
-entry=data[10]
+entry = data[10]
 cache.put(entry)
 cache.stats(tabulate)
