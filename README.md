@@ -48,6 +48,11 @@ Adds data to the cache. If the cache is full, it evicts the least recently used 
 * hash(self, data): Generates a hash for the provided data using the specified hash key.
 * evict(self, hash): Evicts the item with the specified hash from the cache. It removes the 
 item from cache_hits and cache_dict.
+## Installation
+install dependencies using:
+```bash
+poetry install
+```
 ## basic usage
 
 Initializes a cache object of size 10 and using "id" as cache key

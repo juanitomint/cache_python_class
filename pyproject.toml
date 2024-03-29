@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "lrucache"
+version = "0.1.0"
+description = "In memory cache demo with LRU eviction policy"
+authors = ["Juan Borda <juanignacioborda@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+tabulate = "^0.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
