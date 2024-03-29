@@ -36,7 +36,18 @@ end
 
   
 ```
+## Summary
+The Cache class provides the following methods:
 
+* __init__(self, size, hash_key="id", 
+tabulate=tabulate): 
+The constructor method that initializes the cache with the specified size, hash key, and tabulate function.
+* put(self, data): 
+Adds data to the cache. If the cache is full, it evicts the least recently used item. It calculates the hash of the data and updates the cache_hits and cache_dict accordingly.
+* get(self, hash): Retrieves data from the cache based on the provided hash. It returns the data if it exists in the cache, otherwise it returns None.
+* hash(self, data): Generates a hash for the provided data using the specified hash key.
+* evict(self, hash): Evicts the item with the specified hash from the cache. It removes the 
+item from cache_hits and cache_dict.
 ## basic usage
 
 Initializes a cache object of size 10 and using "id" as cache key
